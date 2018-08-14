@@ -1,0 +1,14 @@
+PKGNAME=linux-kernel-4.9.119
+PKGSEC=kernel
+PKGDEP=""
+BUILDDEP="bc dracut git grub"
+
+if [[ "${CROSS:-$ARCH}" = "powerpc" ]]; then
+    PKGDES="Linux Kernel version 4.9.119 for PowerPC G3/G4-based Macintosh computers"
+elif [[ "${CROSS:-$ARCH}" = "ppc64" ]]; then
+    PKGDES="Linux Kernel version 4.9.119 for PowerPC G5-based Macintosh computers"
+fi
+
+ABSTRIP=no
+ABELFDEP=no
+ABRPMAUTOPROVONLY=yes
