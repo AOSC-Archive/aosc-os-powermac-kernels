@@ -1,0 +1,13 @@
+PKGNAME=linux+kernel
+PKGSEC=kernel
+PKGDEP="linux-kernel-4.9.119"
+if [[ "${CROSS:-$ARCH}" = "powerpc" ]]; then
+    PKGDES="Linux Kernel for PowerPC G3/G4-based Macintosh computers"
+elif [[ "${CROSS:-$ARCH}" = "ppc64" ]]; then
+    PKGDES="Linux Kernel for PowerPC G5-based Macintosh computers"
+fi
+
+PKGREP="linux+image+new linux+header+new linux+image linux+header linux+image+old linux+header+old"
+PKGPROV="linux+image+new linux+header+new linux+image linux+header linux+image+old linux+header+old"
+
+PKGEPOCH=1
