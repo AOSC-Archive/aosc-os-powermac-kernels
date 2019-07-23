@@ -891,14 +891,8 @@ diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
 index bada636..0b40f32 100644
 --- a/arch/x86/Kconfig
 +++ b/arch/x86/Kconfig
-@@ -926,10 +926,26 @@ config SCHED_SMT
- 	depends on SMP
- 	---help---
- 	  SMT scheduler support improves the CPU scheduler's decision making
--	  when dealing with Intel Pentium 4 chips with HyperThreading at a
-+	  when dealing with Intel P4/Core 2 chips with HyperThreading at a
- 	  cost of slightly increased overhead in some places. If unsure say
- 	  N here.
+@@ -926,5 +926,21 @@ config SCHED_SMT
+	def_bool y if SMP
  
 +config SMT_NICE
 +	bool "SMT (Hyperthreading) aware nice priority and policy support"
@@ -10247,10 +10241,11 @@ diff --git a/kernel/sysctl.c b/kernel/sysctl.c
 index 706309f..2557e03 100644
 --- a/kernel/sysctl.c
 +++ b/kernel/sysctl.c
-@@ -125,8 +125,14 @@ static int __maybe_unused one = 1;
+@@ -125,9 +125,15 @@ static int __maybe_unused one = 1;
  static int __maybe_unused two = 2;
  static int __maybe_unused four = 4;
  static unsigned long one_ul = 1;
+ static unsigned long long_max = LONG_MAX;
 -static int one_hundred = 100;
 -static int one_thousand = 1000;
 +static int __read_mostly one_hundred = 100;

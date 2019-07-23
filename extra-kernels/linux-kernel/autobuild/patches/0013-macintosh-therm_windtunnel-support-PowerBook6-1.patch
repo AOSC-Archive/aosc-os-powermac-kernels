@@ -1,0 +1,30 @@
+From 0508bdb8a958db495e741c682f710dc63ece0fde Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <icenowy@aosc.io>
+Date: Tue, 23 Jul 2019 19:31:29 +0800
+Subject: [PATCH 3/3] macintosh/therm_windtunnel: support PowerBook6,1
+
+PowerBook6,1 uses the same thermal chipset w/ G4 desktops.
+
+Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+---
+ drivers/macintosh/therm_windtunnel.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/macintosh/therm_windtunnel.c b/drivers/macintosh/therm_windtunnel.c
+index 68dcbcb4fc5b..e8a30d599463 100644
+--- a/drivers/macintosh/therm_windtunnel.c
++++ b/drivers/macintosh/therm_windtunnel.c
+@@ -491,7 +491,9 @@ g4fan_init( void )
+ 	info = of_get_property(np, "thermal-info", NULL);
+ 	of_node_put(np);
+ 
+-	if( !info || !of_machine_is_compatible("PowerMac3,6") )
++	if( !info ||
++	    (!of_machine_is_compatible("PowerMac3,6") &&
++	     !of_machine_is_compatible("PowerBook6,1")))
+ 		return -ENODEV;
+ 
+ 	if( info->id != 3 ) {
+-- 
+2.21.0
+

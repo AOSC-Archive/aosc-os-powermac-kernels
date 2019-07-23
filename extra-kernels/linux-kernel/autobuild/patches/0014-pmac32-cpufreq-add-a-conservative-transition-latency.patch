@@ -1,0 +1,25 @@
+From c3f4d73239a9cabb06983aa05aa03ed176403a4c Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <icenowy@aosc.io>
+Date: Tue, 23 Jul 2019 20:23:48 +0800
+Subject: [PATCH] pmac32-cpufreq: add a conservative transition latency
+
+Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+---
+ drivers/cpufreq/pmac32-cpufreq.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/cpufreq/pmac32-cpufreq.c b/drivers/cpufreq/pmac32-cpufreq.c
+index 641f8021855a..ae94d822d79e 100644
+--- a/drivers/cpufreq/pmac32-cpufreq.c
++++ b/drivers/cpufreq/pmac32-cpufreq.c
+@@ -641,6 +641,7 @@ static int __init pmac_cpufreq_setup(void)
+ 		   of_machine_is_compatible("PowerBook3,5") ||
+ 		   of_machine_is_compatible("MacRISC3")) {
+ 		pmac_cpufreq_init_MacRISC3(cpunode);
++		transition_latency = 20000000;
+ 	/* Else check for iBook2 500/600 */
+ 	} else if (of_machine_is_compatible("PowerBook4,1")) {
+ 		hi_freq = cur_freq;
+-- 
+2.21.0
+

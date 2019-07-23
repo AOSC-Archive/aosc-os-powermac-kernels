@@ -1,0 +1,25 @@
+From db0b2f5275abe9ecc7f76242f00b6b597a7658be Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <icenowy@aosc.io>
+Date: Tue, 23 Jul 2019 19:30:35 +0800
+Subject: [PATCH 2/3] video: fbdev: nvidia: drop modalias for auto-loading
+
+Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
+---
+ drivers/video/fbdev/nvidia/nvidia.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/video/fbdev/nvidia/nvidia.c b/drivers/video/fbdev/nvidia/nvidia.c
+index 54519377c042..9a2e3f132d3c 100644
+--- a/drivers/video/fbdev/nvidia/nvidia.c
++++ b/drivers/video/fbdev/nvidia/nvidia.c
+@@ -60,7 +60,6 @@ static struct pci_device_id nvidiafb_pci_tbl[] = {
+ 	 PCI_BASE_CLASS_DISPLAY << 16, 0xff0000, 0},
+ 	{ 0, }
+ };
+-MODULE_DEVICE_TABLE(pci, nvidiafb_pci_tbl);
+ 
+ /* command line data, set in nvidiafb_setup() */
+ static int flatpanel = -1;	/* Autodetect later */
+-- 
+2.21.0
+
